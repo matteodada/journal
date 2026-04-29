@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import projects from '../../data/projects.json';
+import photos from '../../data/photos.json';
+import site from '../../data/site.json';
+
+const observations = await getCollection('observations');
+observations.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+const lastObservation = observations[0];
+
+const adventures = await getCollection('adventures');
+adventures.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+const lastAdventure = adventures[0];
+
+const activeProjects = projects.filter(p => p.status === 'active');
+
+const sortedPhotos = [...photos].sort((a, b) => new Date(b.date) - new Date(a.date));
+const lastCreatives = sortedPhotos.slice(0, 5);
+
+function formatObsDate(dateStr) {
+  const [year, month, day] = dateStr.split('-');
+  return `${day}-${month}-${year}`;
+}
+
+function formatAdvDate(dateStr) {
+  const [year, month] = dateStr.split('-');
+  const months = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+  return `${months[parseInt(month, 10) - 1]} ${year}`;
+}
+---
+<Base title="home">
+  <div class="section-label">last observation</div>
+  <div class="row">
+    <a href={`/observations/${lastObservation.id}`}>{lastObservation.data.title}</a>
+    <span>{formatObsDate(lastObservation.data.date)}</span>
+  </div>
+
+  <div class="section-label">last adventure</div>
+  <img src={lastAdventure.data.cover} alt={lastAdventure.data.title} style="width:100%;display:block;margin-bottom:6px;" />
+  <div class="row">
+    <a href={`/adventures/${lastAdventure.id}`}>{lastAdventure.data.title}</a>
+    <span>{formatAdvDate(lastAdventure.data.date)}</span>
+  </div>
+
+  <div class="section-label">active projects</div>
+  {activeProjects.map(project => (
+    <div class="project-item">
+      <div class="row">
+        <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
+        <span>{project.date}</span>
+      </div>
+      <p class="project-description">{project.description}</p>
+    </div>
+  ))}
+
+  <div class="section-label">last creatives</div>
+  <div class="creatives-strip">
+    {lastCreatives.map(photo => (
+      <a href={`/creatives/${photo.slug}`}>
+        <img src={photo.image} alt={photo.location} />
+      </a>
+    ))}
+  </div>
+
+  <div class="section-label">where i'm at</div>
+  <p>{site.location}</p>
+</Base>
