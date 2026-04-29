@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import curation from '../../../data/curation.json';
+
+const sorted = [...curation].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+function formatDate(dateStr) {
+  const [year, month] = dateStr.split('-');
+  const months = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+  return `${months[parseInt(month, 10) - 1]} ${year}`;
+}
+---
+<Base title="curation" activePage="curation">
+  {sorted.map(item => (
+    <div class="curation-item">
+      <div class="curation-title-row">
+        <span class="curation-type">{item.type}</span>
+        <span class="curation-title">{item.title}</span>
+      </div>
+      <div class="curation-meta">{formatDate(item.date)} — {item.note}</div>
+    </div>
+  ))}
+</Base>
