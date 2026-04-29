@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import photos from '../../../data/photos.json';
+
+export async function getStaticPaths() {
+  return photos.map(photo => ({
+    params: { slug: photo.slug },
+    props: { photo },
+  }));
+}
+
+const { photo } = Astro.props;
+---
+<Base title={photo.location} activePage="creatives">
+  <img src={photo.image} alt={photo.location} class="creative-full" />
+  <div class="creative-meta">
+    <span>{photo.location}</span>
+    <span>taken with {photo.camera}</span>
+  </div>
+  <p class="creative-copyright">© Matteo Dada. All Rights Reserved.</p>
+</Base>
