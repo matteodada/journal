@@ -1,0 +1,289 @@
+@font-face {
+  font-family: 'ThatThatNewPixelFamily-Square';
+  src: url('/fonts/ThatThatNewPixelFamily-Square.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #111;
+  background: #fff;
+}
+
+a {
+  color: #111;
+  text-decoration: underline;
+}
+
+/* ── Layout ── */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  padding: 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+.site-name {
+  font-family: 'ThatThatNewPixelFamily-Square', serif;
+  display: block;
+  margin-bottom: 24px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #111;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sidebar nav a {
+  text-decoration: none;
+  color: #111;
+  font-size: 14px;
+}
+
+.sidebar nav a.active {
+  font-weight: bold;
+}
+
+/* content top padding = sidebar padding-top (16) + site-name line-height (~22) + margin-bottom (24) = 62px */
+.content {
+  margin-left: 180px;
+  padding: 62px 32px 64px 32px;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* ── Section labels (home page dividers) ── */
+
+.section-label {
+  font-size: 11px;
+  color: #bbb;
+  margin-top: 32px;
+  margin-bottom: 6px;
+}
+
+.section-label:first-child {
+  margin-top: 0;
+}
+
+/* ── Row: title left, date right ── */
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.row a {
+  text-decoration: underline;
+}
+
+.row span {
+  white-space: nowrap;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+/* ── Prose (observation + adventure body) ── */
+
+.prose p {
+  margin-bottom: 1rem;
+}
+
+.prose img {
+  width: 100%;
+  margin: 1.5rem 0;
+  display: block;
+}
+
+/* Two consecutive images = side by side */
+.prose img + img {
+  display: inline-block;
+  width: calc(50% - 4px);
+  vertical-align: top;
+  margin-top: 0;
+}
+
+.prose img:has(+ img) {
+  display: inline-block;
+  width: calc(50% - 4px);
+  vertical-align: top;
+  margin-bottom: 0;
+  margin-right: 8px;
+}
+
+/* ── Entry header (observation + adventure detail) ── */
+
+.entry-header {
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Adventures grid ── */
+
+.adventures-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.adventure-card img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.adventure-card a {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.adventure-date {
+  font-size: 12px;
+  color: #555;
+}
+
+/* ── Creatives grid ── */
+
+.creatives-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.creatives-grid a {
+  display: block;
+  text-decoration: none;
+}
+
+.creatives-grid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  filter: grayscale(100%);
+  display: block;
+}
+
+/* ── Creatives strip (home page) ── */
+
+.creatives-strip {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.creatives-strip a {
+  display: block;
+  text-decoration: none;
+  flex: 1;
+}
+
+.creatives-strip img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  filter: grayscale(100%);
+  display: block;
+}
+
+/* ── Creative detail ── */
+
+.creative-full {
+  width: 100%;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.creative-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 0.5rem;
+}
+
+.creative-copyright {
+  font-size: 12px;
+  color: #888;
+}
+
+/* ── Projects ── */
+
+.projects-section {
+  margin-bottom: 2rem;
+}
+
+.projects-section-title {
+  font-size: 11px;
+  color: #bbb;
+  margin-bottom: 12px;
+}
+
+.project-item {
+  margin-bottom: 1.2rem;
+}
+
+.project-description {
+  font-size: 13px;
+  color: #444;
+  margin-top: 2px;
+}
+
+.project-archived-reason {
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* ── Curation ── */
+
+.curation-item {
+  margin-bottom: 1rem;
+}
+
+.curation-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.curation-type {
+  font-size: 11px;
+  color: #bbb;
+}
+
+.curation-title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.curation-meta {
+  font-size: 12px;
+  color: #555;
+  margin-top: 1px;
+}

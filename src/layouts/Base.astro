@@ -1,0 +1,29 @@
+---
+import '../styles/global.css';
+const { title, activePage = '' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{title} — matteo dada</title>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="/" class="site-name">matteo dada</a>
+      <nav>
+        <a href="/observations" class={activePage === 'observations' ? 'active' : ''}>observations</a>
+        <a href="/adventures" class={activePage === 'adventures' ? 'active' : ''}>adventures</a>
+        <a href="/projects" class={activePage === 'projects' ? 'active' : ''}>projects</a>
+        <a href="/creatives" class={activePage === 'creatives' ? 'active' : ''}>creatives</a>
+        <a href="/curation" class={activePage === 'curation' ? 'active' : ''}>curation</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <slot />
+    </main>
+  </div>
+</body>
+</html>
