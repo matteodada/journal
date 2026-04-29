@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const observations = await getCollection('observations');
+observations.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+
+function formatDate(dateStr) {
+  const [year, month, day] = dateStr.split('-');
+  return `${day}-${month}-${year}`;
+}
+---
+<Base title="observations" activePage="observations">
+  {observations.map(entry => (
+    <div class="row" style="margin-bottom: 4px;">
+      <a href={`/observations/${entry.id}`}>{entry.data.title}</a>
+      <span>{formatDate(entry.data.date)}</span>
+    </div>
+  ))}
+</Base>

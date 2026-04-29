@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const observations = await getCollection('observations');
+  return observations.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+function formatDateSlash(dateStr) {
+  const [year, month, day] = dateStr.split('-');
+  return `${day}/${month}/${year}`;
+}
+---
+<Base title={entry.data.title} activePage="observations">
+  <h1 class="entry-header">{entry.data.title} — {formatDateSlash(entry.data.date)}</h1>
+  <div class="prose">
+    <Content />
+  </div>
+</Base>
