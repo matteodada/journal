@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const adventures = await getCollection('adventures');
+  return adventures.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+function formatDate(dateStr) {
+  const [year, month] = dateStr.split('-');
+  const months = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+  return `${months[parseInt(month, 10) - 1]} ${year}`;
+}
+---
+<Base title={entry.data.title} activePage="adventures">
+  <h1 class="entry-header">{entry.data.title} — {formatDate(entry.data.date)}</h1>
+  <div class="prose">
+    <Content />
+  </div>
+</Base>
