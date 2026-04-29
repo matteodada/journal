@@ -14,11 +14,11 @@ const { title, activePage = '' } = Astro.props;
     <aside class="sidebar">
       <a href="/" class="site-name">matteo dada</a>
       <nav>
-        <a href="/observations" class={activePage === 'observations' ? 'active' : ''}>observations</a>
-        <a href="/adventures" class={activePage === 'adventures' ? 'active' : ''}>adventures</a>
-        <a href="/projects" class={activePage === 'projects' ? 'active' : ''}>projects</a>
-        <a href="/creatives" class={activePage === 'creatives' ? 'active' : ''}>creatives</a>
-        <a href="/curation" class={activePage === 'curation' ? 'active' : ''}>curation</a>
+        <a href="/observations" class:list={[{ active: activePage === 'observations' }]}>observations</a>
+        <a href="/adventures" class:list={[{ active: activePage === 'adventures' }]}>adventures</a>
+        <a href="/projects" class:list={[{ active: activePage === 'projects' }]}>projects</a>
+        <a href="/creatives" class:list={[{ active: activePage === 'creatives' }]}>creatives</a>
+        <a href="/curation" class:list={[{ active: activePage === 'curation' }]}>curation</a>
       </nav>
     </aside>
     <main class="content">
