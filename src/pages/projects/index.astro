@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import projects from '../../../data/projects.json';
+
+const active = projects.filter(p => p.status === 'active');
+const archived = projects.filter(p => p.status === 'archived');
+---
+<Base title="projects" activePage="projects">
+  <div class="projects-section">
+    <div class="projects-section-title">active</div>
+    {active.map(project => (
+      <div class="project-item">
+        <div class="row">
+          <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
+          <span>{project.date}</span>
+        </div>
+        <p class="project-description">{project.description}</p>
+      </div>
+    ))}
+  </div>
+
+  <div class="projects-section">
+    <div class="projects-section-title">archived</div>
+    {archived.map(project => (
+      <div class="project-item">
+        <div class="row">
+          <span>{project.name}</span>
+          <span>{project.date}</span>
+        </div>
+        <p class="project-description">{project.description}</p>
+        {project.archived_reason && (
+          <p class="project-archived-reason">{project.archived_reason}</p>
+        )}
+      </div>
+    ))}
+  </div>
+</Base>
