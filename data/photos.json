@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "madagascar-street",
+    "image": "https://picsum.photos/seed/madagascar/800/800",
+    "location": "Madagascar, August 2003",
+    "date": "2003-08",
+    "camera": "Nikon DSLR"
+  },
+  {
+    "slug": "japan-temple",
+    "image": "https://picsum.photos/seed/japantemple/800/800",
+    "location": "Kyoto, Japan, September 2025",
+    "date": "2025-09",
+    "camera": "Leica Q2"
+  },
+  {
+    "slug": "pyrenees-peak",
+    "image": "https://picsum.photos/seed/pyreneespeak/800/800",
+    "location": "Pyrenees, France, April 2025",
+    "date": "2025-04",
+    "camera": "iPhone 15 Pro"
+  },
+  {
+    "slug": "toulouse-canal",
+    "image": "https://picsum.photos/seed/toulousecanal/800/800",
+    "location": "Toulouse, France, January 2025",
+    "date": "2025-01",
+    "camera": "Leica Q2"
+  },
+  {
+    "slug": "paris-street",
+    "image": "https://picsum.photos/seed/parisstreet/800/800",
+    "location": "Paris, France, December 2024",
+    "date": "2024-12",
+    "camera": "Nikon DSLR"
+  },
+  {
+    "slug": "london-fog",
+    "image": "https://picsum.photos/seed/londonfog/800/800",
+    "location": "London, UK, November 2024",
+    "date": "2024-11",
+    "camera": "iPhone 14 Pro"
+  }
+]
