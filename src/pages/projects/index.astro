@@ -11,7 +11,10 @@ const archived = projects.filter(p => p.status === 'archived');
     {active.map(project => (
       <div class="project-item">
         <div class="row">
-          <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
+          {project.url
+            ? <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
+            : <span>{project.name}</span>
+          }
           <span>{project.date}</span>
         </div>
         <p class="project-description">{project.description}</p>

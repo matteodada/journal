@@ -31,24 +31,35 @@ function formatAdvDate(dateStr) {
 }
 ---
 <Base title="home">
-  <div class="section-label">last observation</div>
-  <div class="row">
-    <a href={`/observations/${lastObservation.id}`}>{lastObservation.data.title}</a>
-    <span>{formatObsDate(lastObservation.data.date)}</span>
-  </div>
+  {lastObservation && (
+    <>
+      <div class="section-label">last observation</div>
+      <div class="row">
+        <a href={`/observations/${lastObservation.id}`}>{lastObservation.data.title}</a>
+        <span>{formatObsDate(lastObservation.data.date)}</span>
+      </div>
+    </>
+  )}
 
-  <div class="section-label">last adventure</div>
-  <img src={lastAdventure.data.cover} alt={lastAdventure.data.title} style="width:100%;display:block;margin-bottom:6px;" />
-  <div class="row">
-    <a href={`/adventures/${lastAdventure.id}`}>{lastAdventure.data.title}</a>
-    <span>{formatAdvDate(lastAdventure.data.date)}</span>
-  </div>
+  {lastAdventure && (
+    <>
+      <div class="section-label">last adventure</div>
+      <img src={lastAdventure.data.cover} alt={lastAdventure.data.title} style="width:100%;display:block;margin-bottom:6px;" />
+      <div class="row">
+        <a href={`/adventures/${lastAdventure.id}`}>{lastAdventure.data.title}</a>
+        <span>{formatAdvDate(lastAdventure.data.date)}</span>
+      </div>
+    </>
+  )}
 
   <div class="section-label">active projects</div>
   {activeProjects.map(project => (
     <div class="project-item">
       <div class="row">
-        <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
+        {project.url
+          ? <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
+          : <span>{project.name}</span>
+        }
         <span>{project.date}</span>
       </div>
       <p class="project-description">{project.description}</p>
