@@ -15,7 +15,7 @@ const archived = projects.filter(p => p.status === 'archived');
             ? <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
             : <span>{project.name}</span>
           }
-          <span>{project.date}</span>
+          <span>{project.date_label}</span>
         </div>
         <p class="project-description">{project.description}</p>
       </div>
@@ -27,8 +27,8 @@ const archived = projects.filter(p => p.status === 'archived');
     {archived.map(project => (
       <div class="project-item">
         <div class="row">
-          <span>{project.name}</span>
-          <span>{project.date}</span>
+          <span class="project-name">{project.name}</span>
+          <span>{project.date_label}</span>
         </div>
         <p class="project-description">{project.description}</p>
         {project.archived_reason && (

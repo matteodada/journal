@@ -18,7 +18,7 @@ journal/
 │   │   └── config.js               # Astro 5 content layer schemas
 │   ├── pages/
 │   │   ├── index.astro
-│   │   ├── observations/
+│   │   ├── thoughts/
 │   │   │   ├── index.astro
 │   │   │   └── [slug].astro
 │   │   ├── adventures/
@@ -36,7 +36,7 @@ journal/
 │   └── styles/
 │       └── global.css
 ├── content/                        # markdown files at project root (not inside src/)
-│   ├── observations/
+│   ├── thoughts/
 │   └── adventures/
 ├── data/
 │   ├── photos.json
@@ -52,7 +52,7 @@ journal/
 
 **Hybrid approach — two storage systems:**
 
-- `content/observations/` + `content/adventures/` → Astro Content Collections (Astro 5 glob loader). The `content/` directory is at the **project root**, not inside `src/`. The schema lives at `src/content/config.js`.
+- `content/thoughts/` + `content/adventures/` → Astro Content Collections (Astro 5 glob loader). The `content/` directory is at the **project root**, not inside `src/`. The schema lives at `src/content/config.js`.
 - `data/photos.json`, `data/projects.json`, `data/curation.json`, `data/site.json` → plain JSON, imported directly with `import foo from '../../data/foo.json'`
 
 **Slugs:** For content collections, `entry.id` (filename without extension) is used as the URL slug — not a separate `slug` frontmatter field.
@@ -110,7 +110,7 @@ Every page uses a fixed left sidebar and a content area to the right.
 
 **Sidebar:**
 - `matteo dada` in custom font (20px) at top → links to `/`
-- Nav links below: `observations` / `adventures` / `projects` / `creatives` / `curation`
+- Nav links below: `thoughts` / `adventures` / `projects` / `creatives` / `curation`
 - 16px padding on all sides
 - Active page link is `font-weight: bold`
 - Sidebar: `width: 180px; position: fixed`
@@ -127,7 +127,7 @@ Every page uses a fixed left sidebar and a content area to the right.
 ### Home `/`
 Sections in this order, top to bottom:
 
-1. **last observation** — most recent from `observations` collection, show title (underlined link) + `date_label` on the right
+1. **last thought** — most recent from `thoughts` collection, show title (underlined link) + `date_label` on the right
 2. **last adventure** — most recent from `adventures` collection, show cover image (`.home-adventure-cover`: 40% width, 3/2 aspect ratio) + name (link) + `date_label`
 3. **active projects** — all entries from `projects.json` where `status: "active"`, show name (external link) + `date_label` + description
 4. **last creatives** — 5 most recent from `photos.json`, horizontal strip (`.creatives-strip`): fixed 120px height, auto width per image
@@ -137,25 +137,25 @@ Section labels use `.section-label` (12px, #999, muted). "where i'm at" uses `.s
 
 ---
 
-### Observations `/observations`
+### Thoughts `/thoughts`
 **List:**
 - Flat list, sorted by date descending
 - Each row: title (underlined link, left) + `date_label` (right, 12px, `flex-shrink: 0`)
 - Rows have `margin-bottom: 8px` (inline style)
 
-**Detail `/observations/[slug]`:**
+**Detail `/thoughts/[slug]`:**
 - Header: `<h1 class="entry-header">` — `title` + `<span class="secondary">date_label</span>`
 - Visually flat header: 14px, font-weight normal
 - Body: `.prose` wrapping `<Content />`
-- No images in observations
+- No images in thoughts
 
 **Content collection schema:**
 ```js
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-const observations = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './content/observations' }),
+const thoughts = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './content/thoughts' }),
   schema: z.object({
     title: z.string(),
     date: z.string(),
@@ -424,4 +424,4 @@ export default defineConfig({
 - No responsive / mobile CSS. Desktop-only for now.
 - No dark mode, no CSS variables.
 - No components beyond `Base.astro`. All markup is inlined into page files.
-- The only inline style in the codebase is `margin-bottom: 8px` on observation list rows.
+- The only inline style in the codebase is `margin-bottom: 8px` on thought list rows.

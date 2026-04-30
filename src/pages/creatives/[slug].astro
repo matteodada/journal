@@ -11,11 +11,17 @@ export async function getStaticPaths() {
 
 const { photo } = Astro.props;
 ---
-<Base title={photo.location} activePage="creatives">
-  <img src={photo.image} alt={photo.location} class="creative-full" />
-  <div class="creative-meta">
-    <span>{photo.location}</span>
-    <span>taken with {photo.camera}</span>
+<Base title={photo.location} activePage="creatives" wide={true}>
+  <div class="creative-block">
+    <div class="creative-inner">
+      <img src={photo.image} alt={photo.location} class="creative-full" />
+      <div class="creative-meta">
+        <div>
+          <span class="creative-location">{photo.location}</span>
+          <p class="creative-copyright">© Matteo Dada. All Rights Reserved.</p>
+        </div>
+        <span class="creative-camera">taken with {photo.camera}</span>
+      </div>
+    </div>
   </div>
-  <p class="creative-copyright">© Matteo Dada. All Rights Reserved.</p>
 </Base>

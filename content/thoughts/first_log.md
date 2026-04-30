@@ -1,6 +1,7 @@
 ---
-title: "On keeping a journal"
-date: "2025-11-15"
+title: "first log"
+date: "2026-04-30"
+date_label: "30-04-26"
 ---
 
 I have kept a journal since I was seventeen. Not every day — the consistency has varied wildly — but the practice has never fully stopped. It has changed shape many times.

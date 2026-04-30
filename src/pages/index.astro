@@ -5,9 +5,9 @@ import projects from '../../data/projects.json';
 import photos from '../../data/photos.json';
 import site from '../../data/site.json';
 
-const observations = await getCollection('observations');
-observations.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
-const lastObservation = observations[0];
+const thoughts = await getCollection('thoughts');
+thoughts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+const lastObservation = thoughts[0];
 
 const adventures = await getCollection('adventures');
 adventures.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
@@ -18,25 +18,14 @@ const activeProjects = projects.filter(p => p.status === 'active');
 const sortedPhotos = [...photos].sort((a, b) => new Date(b.date) - new Date(a.date));
 const lastCreatives = sortedPhotos.slice(0, 5);
 
-function formatObsDate(dateStr) {
-  const [year, month, day] = dateStr.split('-');
-  return `${day}-${month}-${year}`;
-}
-
-function formatAdvDate(dateStr) {
-  const [year, month] = dateStr.split('-');
-  const months = ['January','February','March','April','May','June',
-                  'July','August','September','October','November','December'];
-  return `${months[parseInt(month, 10) - 1]} ${year}`;
-}
 ---
 <Base title="home">
   {lastObservation && (
     <>
-      <div class="section-label">last observation</div>
+      <div class="section-label">last thought</div>
       <div class="row">
-        <a href={`/observations/${lastObservation.id}`}>{lastObservation.data.title}</a>
-        <span>{formatObsDate(lastObservation.data.date)}</span>
+        <a href={`/thoughts/${lastObservation.id}`}>{lastObservation.data.title}</a>
+        <span>{lastObservation.data.date_label}</span>
       </div>
     </>
   )}
@@ -44,10 +33,10 @@ function formatAdvDate(dateStr) {
   {lastAdventure && (
     <>
       <div class="section-label">last adventure</div>
-      <img src={lastAdventure.data.cover} alt={lastAdventure.data.title} style="width:100%;display:block;margin-bottom:6px;" />
+      <img src={lastAdventure.data.cover} alt={lastAdventure.data.title} class="home-adventure-cover" />
       <div class="row">
         <a href={`/adventures/${lastAdventure.id}`}>{lastAdventure.data.title}</a>
-        <span>{formatAdvDate(lastAdventure.data.date)}</span>
+        <span>{lastAdventure.data.date_label}</span>
       </div>
     </>
   )}
@@ -60,7 +49,7 @@ function formatAdvDate(dateStr) {
           ? <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
           : <span>{project.name}</span>
         }
-        <span>{project.date}</span>
+        <span>{project.date_label}</span>
       </div>
       <p class="project-description">{project.description}</p>
     </div>
@@ -75,6 +64,6 @@ function formatAdvDate(dateStr) {
     ))}
   </div>
 
-  <div class="section-label">where i'm at</div>
+  <div class="section-label section-label--tight">where i'm at</div>
   <p>{site.location}</p>
 </Base>

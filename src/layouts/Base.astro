@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-const { title, activePage = '' } = Astro.props;
+const { title, activePage = '', wide = false } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -8,20 +8,27 @@ const { title, activePage = '' } = Astro.props;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
   <title>{title} — matteo dada</title>
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+  <meta property="og:title" content={`${title} — matteo dada`} />
+  <meta property="og:image" content="https://matteodada.com/og.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={Astro.url} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://matteodada.com/og.jpg" />
 </head>
 <body>
   <div class="layout">
     <aside class="sidebar">
       <a href="/" class="site-name">matteo dada</a>
       <nav>
-        <a href="/observations" class:list={[{ active: activePage === 'observations' }]}>observations</a>
+        <a href="/thoughts" class:list={[{ active: activePage === 'thoughts' }]}>thoughts</a>
         <a href="/adventures" class:list={[{ active: activePage === 'adventures' }]}>adventures</a>
         <a href="/projects" class:list={[{ active: activePage === 'projects' }]}>projects</a>
         <a href="/creatives" class:list={[{ active: activePage === 'creatives' }]}>creatives</a>
         <a href="/curation" class:list={[{ active: activePage === 'curation' }]}>curation</a>
       </nav>
     </aside>
-    <main class="content">
+    <main class:list={['content', { 'content--wide': wide }]}>
       <slot />
     </main>
   </div>

@@ -5,20 +5,14 @@ import { getCollection } from 'astro:content';
 const adventures = await getCollection('adventures');
 adventures.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 
-function formatDate(dateStr) {
-  const [year, month] = dateStr.split('-');
-  const months = ['January','February','March','April','May','June',
-                  'July','August','September','October','November','December'];
-  return `${months[parseInt(month, 10) - 1]} ${year}`;
-}
 ---
-<Base title="adventures" activePage="adventures">
+<Base title="adventures" activePage="adventures" wide={true}>
   <div class="adventures-grid">
     {adventures.map(entry => (
       <div class="adventure-card">
         <img src={entry.data.cover} alt={entry.data.title} />
         <a href={`/adventures/${entry.id}`}>{entry.data.title}</a>
-        <span class="adventure-date">{formatDate(entry.data.date)}</span>
+        <span class="adventure-date">{entry.data.date_label}</span>
       </div>
     ))}
   </div>

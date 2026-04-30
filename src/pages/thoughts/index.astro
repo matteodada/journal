@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const thoughts = await getCollection('thoughts');
+thoughts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+
+---
+<Base title="thoughts" activePage="thoughts">
+  {thoughts.map(entry => (
+    <div class="row" style="margin-bottom: 8px;">
+      <a href={`/thoughts/${entry.id}`}>{entry.data.title}</a>
+      <span>{entry.data.date_label}</span>
+    </div>
+  ))}
+</Base>

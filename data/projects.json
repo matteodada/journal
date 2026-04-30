@@ -1,21 +1,24 @@
 [
   {
     "name": "Peak Partner",
-    "date": "January 2025",
+    "date": "2025-01-01",
+    "date_label": "January 2025",
     "url": "https://apps.apple.com/app/peak-partner/id123456789",
     "description": "An app to help pro athletes understand the impact of their daily lives on performance.",
     "status": "active"
   },
   {
     "name": "Explorer Journal",
-    "date": "April 2026",
+    "date": "2026-04-01",
+    "date_label": "April 2026",
     "url": "https://matteodada.com",
     "description": "A personal site to document travels, observations, and creative work.",
     "status": "active"
   },
   {
     "name": "Watudu",
-    "date": "January 2025",
+    "date": "2025-01-01",
+    "date_label": "January 2025",
     "url": null,
     "description": "An app to help people find activities by category.",
     "archived_reason": "The content was bad.",

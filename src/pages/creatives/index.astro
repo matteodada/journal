@@ -4,7 +4,7 @@ import photos from '../../../data/photos.json';
 
 const sorted = [...photos].sort((a, b) => new Date(b.date) - new Date(a.date));
 ---
-<Base title="creatives" activePage="creatives">
+<Base title="creatives" activePage="creatives" wide={true}>
   <div class="creatives-grid">
     {sorted.map(photo => (
       <a href={`/creatives/${photo.slug}`}>
