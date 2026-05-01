@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import highlights from '../../../data/highlights.json';
+
+const sorted = [...highlights].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+---
+<Base title="highlights" activePage="highlights">
+  {sorted.map(item => (
+    <div class="highlight-item">
+      <div class="highlight-title-row">
+        <span class="highlight-type">{item.type}</span>
+        <span class="highlight-title">{item.title}</span>
+      </div>
+      <div class="highlight-meta">{item.date_label}, {item.note}</div>
+    </div>
+  ))}
+</Base>

@@ -2,17 +2,17 @@
   {
     "slug": "bjark",
     "image": "https://res.cloudinary.com/dpyebib7h/image/upload/w_1200,f_auto,q_auto/bjark.jpg",
-    "location": "Toulouse, September 2019",
-    "date": "2019-09-01",
-    "date_label": "September 2019",
-    "camera": "Leica Q2"
+    "location": "Rue Caussade, 2019",
+    "date": "2019-05-01",
+    "date_label": "May 2019",
+    "camera": "iPhone"
   },
   {
     "slug": "barcelona-ghost",
     "image": "https://res.cloudinary.com/dpyebib7h/image/upload/w_1200,f_auto,q_auto/barcelona_ghost.jpg",
     "location": "Barcelona, 2019",
-    "date": "2019-04-01",
-    "date_label": "April 2019",
-    "camera": "iPhone 12 Pro"
+    "date": "2019-06-18",
+    "date_label": "June 2019",
+    "camera": "iPhone"
   }
 ]

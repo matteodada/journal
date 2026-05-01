@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import projects from '../../data/projects.json';
 import photos from '../../data/photos.json';
+import highlights from '../../data/highlights.json';
 import site from '../../data/site.json';
 
 const thoughts = await getCollection('thoughts');
@@ -13,10 +14,12 @@ const adventures = await getCollection('adventures');
 adventures.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 const lastAdventure = adventures[0];
 
-const activeProjects = projects.filter(p => p.status === 'active');
+const lastProject = projects.find(p => p.featured) ?? [...projects].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
 
 const sortedPhotos = [...photos].sort((a, b) => new Date(b.date) - new Date(a.date));
-const lastCreatives = sortedPhotos.slice(0, 5);
+const lastCreatives = sortedPhotos.slice(0, 4);
+
+const lastHighlight = [...highlights].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
 
 ---
 <Base title="home">
@@ -33,27 +36,31 @@ const lastCreatives = sortedPhotos.slice(0, 5);
   {lastAdventure && (
     <>
       <div class="section-label">last adventure</div>
-      <img src={lastAdventure.data.cover} alt={lastAdventure.data.title} class="home-adventure-cover" />
-      <div class="row">
-        <a href={`/adventures/${lastAdventure.id}`}>{lastAdventure.data.title}</a>
-        <span>{lastAdventure.data.date_label}</span>
+      <div class="home-adventure-block">
+        <img src={lastAdventure.data.cover} alt={lastAdventure.data.title} class="home-adventure-cover" />
+        <div class="home-adventure-meta">
+          <a href={`/adventures/${lastAdventure.id}`}>{lastAdventure.data.title}</a>
+          <span>{lastAdventure.data.date_label}</span>
+        </div>
       </div>
     </>
   )}
 
-  <div class="section-label">active projects</div>
-  {activeProjects.map(project => (
-    <div class="project-item">
-      <div class="row">
-        {project.url
-          ? <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
-          : <span>{project.name}</span>
-        }
-        <span>{project.date_label}</span>
+  {lastProject && (
+    <>
+      <div class="section-label">last project</div>
+      <div class="project-item">
+        <div class="row">
+          {lastProject.url
+            ? <a href={lastProject.url} target="_blank" rel="noopener noreferrer">{lastProject.name}</a>
+            : <span>{lastProject.name}</span>
+          }
+          <span>{lastProject.date_label}</span>
+        </div>
+        <p class="project-description">{lastProject.description}</p>
       </div>
-      <p class="project-description">{project.description}</p>
-    </div>
-  ))}
+    </>
+  )}
 
   <div class="section-label">last creatives</div>
   <div class="creatives-strip">
@@ -63,6 +70,19 @@ const lastCreatives = sortedPhotos.slice(0, 5);
       </a>
     ))}
   </div>
+
+  {lastHighlight && (
+    <>
+      <div class="section-label">last highlight</div>
+      <div class="highlight-item">
+        <div class="highlight-title-row">
+          <span class="highlight-type">{lastHighlight.type}</span>
+          <span class="highlight-title">{lastHighlight.title}</span>
+        </div>
+        <div class="highlight-meta">{lastHighlight.date_label}, {lastHighlight.note}</div>
+      </div>
+    </>
+  )}
 
   <div class="section-label section-label--tight">where i'm at</div>
   <p>{site.location}</p>

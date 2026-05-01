@@ -29,7 +29,7 @@ journal/
 │   │   ├── creatives/
 │   │   │   ├── index.astro
 │   │   │   └── [slug].astro
-│   │   └── curation/
+│   │   └── highlights/
 │   │       └── index.astro
 │   ├── layouts/
 │   │   └── Base.astro
@@ -41,7 +41,7 @@ journal/
 ├── data/
 │   ├── photos.json
 │   ├── projects.json
-│   ├── curation.json
+│   ├── highlights.json
 │   └── site.json
 └── astro.config.mjs
 ```
@@ -53,7 +53,7 @@ journal/
 **Hybrid approach — two storage systems:**
 
 - `content/thoughts/` + `content/adventures/` → Astro Content Collections (Astro 5 glob loader). The `content/` directory is at the **project root**, not inside `src/`. The schema lives at `src/content/config.js`.
-- `data/photos.json`, `data/projects.json`, `data/curation.json`, `data/site.json` → plain JSON, imported directly with `import foo from '../../data/foo.json'`
+- `data/photos.json`, `data/projects.json`, `data/highlights.json`, `data/site.json` → plain JSON, imported directly with `import foo from '../../data/foo.json'`
 
 **Slugs:** For content collections, `entry.id` (filename without extension) is used as the URL slug — not a separate `slug` frontmatter field.
 
@@ -92,6 +92,10 @@ body {
 
 a {
   color: #111;
+  text-decoration: none;
+}
+
+a:hover {
   text-decoration: underline;
 }
 
@@ -110,13 +114,13 @@ Every page uses a fixed left sidebar and a content area to the right.
 
 **Sidebar:**
 - `matteo dada` in custom font (20px) at top → links to `/`
-- Nav links below: `thoughts` / `adventures` / `projects` / `creatives` / `curation`
+- Nav links below: `thoughts` / `adventures` / `projects` / `creatives` / `highlights`
 - 16px padding on all sides
 - Active page link is `font-weight: bold`
 - Sidebar: `width: 180px; position: fixed`
 
 **Content area:**
-- `margin-left: 180px; padding: 72px 32px 64px 32px; max-width: 800px`
+- `margin-left: 180px; padding: 72px 32px 64px 32px; max-width: 600px`
 - The 72px top padding aligns the first content element with the nav links (sidebar padding-top 16 + site-name line-height ~32 + margin-bottom 24 = 72)
 - `wide={true}` adds `.content--wide` which overrides `max-width` to `none` — used for adventures grid and creatives grid
 
@@ -127,11 +131,12 @@ Every page uses a fixed left sidebar and a content area to the right.
 ### Home `/`
 Sections in this order, top to bottom:
 
-1. **last thought** — most recent from `thoughts` collection, show title (underlined link) + `date_label` on the right
-2. **last adventure** — most recent from `adventures` collection, show cover image (`.home-adventure-cover`: 40% width, 3/2 aspect ratio) + name (link) + `date_label`
-3. **active projects** — all entries from `projects.json` where `status: "active"`, show name (external link) + `date_label` + description
-4. **last creatives** — 5 most recent from `photos.json`, horizontal strip (`.creatives-strip`): fixed 120px height, auto width per image
-5. **where i'm at** — `location` from `site.json`, plain text
+1. **last thought** — most recent from `thoughts` collection, show title (link) + `date_label` on the right
+2. **last adventure** — most recent from `adventures` collection, show cover image (`.home-adventure-cover`: 50% width via `.home-adventure-block`, 3/2 aspect ratio) + name (link) + `date_label`
+3. **last project** — the entry in `projects.json` with `"featured": true`, or the most recent if none is featured. Shows name (external link or plain text if no url) + `date_label` + description
+4. **last creatives** — 4 most recent from `photos.json`, horizontal strip (`.creatives-strip`): fixed 120px height, auto width per image; each image links to detail page
+5. **last highlight** — most recent entry from `highlights.json`, shows type + title row then `date_label, note`
+6. **where i'm at** — `location` from `site.json`, plain text
 
 Section labels use `.section-label` (12px, #999, muted). "where i'm at" uses `.section-label--tight` (4px bottom margin instead of 8px).
 
@@ -227,7 +232,8 @@ Two sections:
     "date_label": "January 2025",
     "url": "https://apps.apple.com/...",
     "description": "An app to help pro athletes understand the impact of their daily lives on performance.",
-    "status": "active"
+    "status": "active",
+    "featured": true
   },
   {
     "name": "Watudu",
@@ -241,11 +247,13 @@ Two sections:
 ]
 ```
 
+`featured` (optional boolean) — marks which project appears in the home page "last project" section. Only one entry should have `"featured": true`. If none is marked, the most recent project is shown.
+
 ---
 
 ### Creatives `/creatives`
 **Grid:**
-- 3-column grid, uses `wide={true}` on Base
+- 4-column grid, uses `wide={true}` on Base
 - `object-fit: contain`, `aspect-ratio: 1`
 - No grayscale filter
 - Sorted by date descending
@@ -275,7 +283,7 @@ Two sections:
 
 ---
 
-### Curation `/curation`
+### Highlights `/highlights`
 No detail pages.
 
 Flat list, sorted by date descending. Each entry:
@@ -284,22 +292,22 @@ Flat list, sorted by date descending. Each entry:
 
 Type is any free string (`music`, `movie`, `series`, `youtube channel`, `quote`, `artist`, etc.) — no predefined list.
 
-**curation.json structure:**
+**highlights.json structure:**
 ```json
 [
   {
     "type": "music",
-    "title": "Mumbo Sugar from Arc De Soleil",
-    "date": "2025-05-01",
-    "date_label": "May 2025",
-    "note": "Hard to put into words but it just hits different."
+    "title": "Mace Island",
+    "date": "2024-12-28",
+    "date_label": "28 décembre 2024",
+    "note": "il va percer"
   },
   {
     "type": "quote",
-    "title": "The map is not the territory",
-    "date": "2024-08-01",
-    "date_label": "August 2024",
-    "note": "Alfred Korzybski"
+    "title": "\"Improvise, Adapt, Overcome\" - Bear Grylls",
+    "date": "2000-08-03",
+    "date_label": "2000",
+    "note": "born to risk it all"
   }
 ]
 ```
@@ -309,7 +317,7 @@ Type is any free string (`music`, `movie`, `series`, `youtube channel`, `quote`,
 ### site.json
 ```json
 {
-  "location": "Toulouse, France"
+  "location": "Toulouse"
 }
 ```
 
@@ -362,7 +370,7 @@ Images are grouped inside `<p>` tags in markdown. Layout is CSS-only via `:has()
 ```css
 .creatives-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 60px;
 }
 
@@ -373,7 +381,7 @@ Images are grouped inside `<p>` tags in markdown. Layout is CSS-only via `:has()
 }
 ```
 
-### Creatives strip (home page — last 5)
+### Creatives strip (home page — last 4)
 ```css
 .creatives-strip {
   display: flex;

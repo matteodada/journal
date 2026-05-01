@@ -2,8 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import projects from '../../../data/projects.json';
 
-const active = projects.filter(p => p.status === 'active');
-const archived = projects.filter(p => p.status === 'archived');
+const active = projects.filter(p => p.status === 'active').sort((a, b) => new Date(b.date) - new Date(a.date));
+const archived = projects.filter(p => p.status === 'archived').sort((a, b) => new Date(b.date) - new Date(a.date));
 ---
 <Base title="projects" activePage="projects">
   <div class="projects-section">

@@ -1,0 +1,30 @@
+[
+  {
+    "type": "music",
+    "title": "Mace Island",
+    "date": "2024-12-28",
+    "date_label": "28 décembre 2024",
+    "note": "il va percer"
+  },
+  {
+    "type": "movie",
+    "title": "Le Livre de la Jungle",
+    "date": "2004-01-01",
+    "date_label": "2004",
+    "note": "changed my life"
+  },
+  {
+    "type": "quote",
+    "title": "\"Improvise, Adapt, Overcome\" - Bear Grylls",
+    "date": "2000-08-03",
+    "date_label": "2000",
+    "note": "born to risk it all"
+  },
+  {
+    "type": "artist",
+    "title": "Sitty Dada",
+    "date": "2026-01-01",
+    "date_label": "january 26",
+    "note": "she's good"
+  }
+]

@@ -11,8 +11,10 @@ adventures.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
     {adventures.map(entry => (
       <div class="adventure-card">
         <img src={entry.data.cover} alt={entry.data.title} />
-        <a href={`/adventures/${entry.id}`}>{entry.data.title}</a>
-        <span class="adventure-date">{entry.data.date_label}</span>
+        <div class="adventure-card-meta">
+          <a href={`/adventures/${entry.id}`}>{entry.data.title}</a>
+          <span class="adventure-date">{entry.data.date_label}</span>
+        </div>
       </div>
     ))}
   </div>
