@@ -1,7 +1,37 @@
 [
   {
     "location": "Toulouse",
-    "start_date": "2025-01-01",
+    "start_date": "2010-01-01",
+    "end_date": "2015-12-31"
+  },
+  {
+    "location": "Bordeaux",
+    "start_date": "2016-01-01",
+    "end_date": "2018-06-30"
+  },
+  {
+    "location": "Toulouse",
+    "start_date": "2018-07-01",
+    "end_date": "2019-05-30"
+  },
+  {
+    "location": "Colombia",
+    "start_date": "2019-06-01",
+    "end_date": "2019-08-30"
+  },
+  {
+    "location": "New York",
+    "start_date": "2019-09-01",
+    "end_date": "2019-12-30"
+  },
+  {
+    "location": "Bordeaux",
+    "start_date": "2020-01-01",
+    "end_date": "2020-06-30"
+  },
+  {
+    "location": "Toulouse",
+    "start_date": "2020-07-01",
     "end_date": null
   }
 ]
