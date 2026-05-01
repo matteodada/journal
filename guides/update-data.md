@@ -77,12 +77,30 @@ Projects appear on `/projects` split into two sections — active (linked) and a
 
 ## Update location
 
-Open `data/site.json` and change the `location` value:
+Open `data/locations.json`. When you move somewhere new, **add a new entry** to the array — don't edit the existing one. The array is sorted by `start_date` at build time, so order in the file doesn't matter.
+
+### Moving to a new place
+
+Set `end_date` on the current entry, then add a new object with the new location:
 
 ```json
-{
-  "location": "Toulouse, France"
-}
+[
+  {
+    "location": "Paris",
+    "start_date": "2026-03-01",
+    "end_date": null
+  },
+  {
+    "location": "Toulouse",
+    "start_date": "2025-01-01",
+    "end_date": "2026-02-28"
+  }
+]
 ```
 
-The location appears on the home page under "where i'm at".
+**Fields:**
+- `location` — city or place name, shown as-is on the home page
+- `start_date` — ISO date `YYYY-MM-DD` when you arrived
+- `end_date` — ISO date `YYYY-MM-DD` when you left, or `null` if you're still there
+
+The entry with the most recent `start_date` is shown on the home page under "where i'm at".

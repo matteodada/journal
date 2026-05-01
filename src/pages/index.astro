@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import projects from '../../data/projects.json';
 import photos from '../../data/photos.json';
 import highlights from '../../data/highlights.json';
-import site from '../../data/site.json';
+import locations from '../../data/locations.json';
 
 const thoughts = await getCollection('thoughts');
 thoughts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
@@ -20,6 +20,8 @@ const sortedPhotos = [...photos].sort((a, b) => new Date(b.date) - new Date(a.da
 const lastCreatives = sortedPhotos.slice(0, 4);
 
 const lastHighlight = [...highlights].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+
+const currentLocation = [...locations].sort((a, b) => new Date(b.start_date) - new Date(a.start_date))[0];
 
 ---
 <Base title="home">
@@ -85,5 +87,5 @@ const lastHighlight = [...highlights].sort((a, b) => new Date(b.date) - new Date
   )}
 
   <div class="section-label section-label--tight">where i'm at</div>
-  <p>{site.location}</p>
+  <p>{currentLocation.location}</p>
 </Base>

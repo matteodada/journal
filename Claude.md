@@ -42,7 +42,7 @@ journal/
 │   ├── photos.json
 │   ├── projects.json
 │   ├── highlights.json
-│   └── site.json
+│   └── locations.json
 └── astro.config.mjs
 ```
 
@@ -53,7 +53,7 @@ journal/
 **Hybrid approach — two storage systems:**
 
 - `content/thoughts/` + `content/adventures/` → Astro Content Collections (Astro 5 glob loader). The `content/` directory is at the **project root**, not inside `src/`. The schema lives at `src/content/config.js`.
-- `data/photos.json`, `data/projects.json`, `data/highlights.json`, `data/site.json` → plain JSON, imported directly with `import foo from '../../data/foo.json'`
+- `data/photos.json`, `data/projects.json`, `data/highlights.json`, `data/locations.json` → plain JSON, imported directly with `import foo from '../../data/foo.json'`
 
 **Slugs:** For content collections, `entry.id` (filename without extension) is used as the URL slug — not a separate `slug` frontmatter field.
 
@@ -136,7 +136,7 @@ Sections in this order, top to bottom:
 3. **last project** — the entry in `projects.json` with `"featured": true`, or the most recent if none is featured. Shows name (external link or plain text if no url) + `date_label` + description
 4. **last creatives** — 4 most recent from `photos.json`, horizontal strip (`.creatives-strip`): fixed 120px height, auto width per image; each image links to detail page
 5. **last highlight** — most recent entry from `highlights.json`, shows type + title row then `date_label, note`
-6. **where i'm at** — `location` from `site.json`, plain text
+6. **where i'm at** — `.location` of the entry with the latest `start_date` in `locations.json`, plain text
 
 Section labels use `.section-label` (12px, #999, muted). "where i'm at" uses `.section-label--tight` (4px bottom margin instead of 8px).
 
@@ -314,11 +314,16 @@ Type is any free string (`music`, `movie`, `series`, `youtube channel`, `quote`,
 
 ---
 
-### site.json
+### locations.json
+Array of location objects. Sorted by `start_date` descending at build time — the entry with the latest `start_date` is displayed on the home page. `end_date: null` means current.
 ```json
-{
-  "location": "Toulouse"
-}
+[
+  {
+    "location": "Toulouse",
+    "start_date": "2025-01-01",
+    "end_date": null
+  }
+]
 ```
 
 ---
