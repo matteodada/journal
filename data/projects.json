@@ -1,5 +1,13 @@
 [
   {
+    "name": "Alma & Nexus",
+    "date": "2026-04-01",
+    "date_label": "",
+    "url": null,
+    "description": "A local second brain (Nexus) linked to a Telegram bot (Alma).",
+    "status": "active"
+  },
+  {
     "name": "Peak Partner",
     "date": "2025-01-01",
     "date_label": "",
@@ -9,19 +17,20 @@
     "featured": true
   },
   {
-    "name": "Alma & Nexus",
-    "date": "2026-04-01",
-    "date_label": "",
-    "url": null,
-    "description": "A local second brain (Nexus) linked to a Telegram bot (Alma).",
-    "status": "active"
-  },
-  {
     "name": "Watudu",
     "date": "2025-05-01",
     "date_label": "",
     "url": null,
     "description": "An app to help people find activities by category.",
+    "archived_reason": "",
+    "status": "active"
+  },
+  {
+    "name": "Backyard Games",
+    "date": "2024-08-01",
+    "date_label": "",
+    "url": null,
+    "description": "An app to organize your own olympic games.",
     "archived_reason": "",
     "status": "active"
   },
@@ -51,15 +60,6 @@
     "description": "An trainer/client app with a mac client for the coach and an iOS app for the client.",
     "archived_reason": "The coach paused his activity.",
     "status": "archived"
-  },
-  {
-    "name": "Backyard Games",
-    "date": "2024-08-01",
-    "date_label": "",
-    "url": null,
-    "description": "An app to organize your own olympic games.",
-    "archived_reason": "",
-    "status": "active"
   },
   {
     "name": "C-Wawa / Tee For Tree",
