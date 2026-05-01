@@ -22,7 +22,61 @@
     "date_label": "",
     "url": null,
     "description": "An app to help people find activities by category.",
-    "archived_reason": "The content was bad.",
+    "archived_reason": "",
+    "status": "active"
+  },
+  {
+    "name": "Titipy",
+    "date": "2017-08-01",
+    "date_label": "",
+    "url": null,
+    "description": "Dropshipping websites (pet accessories, travel bags & socks)",
+    "archived_reason": "ONE SALE.",
+    "status": "archived"
+  },
+  {
+    "name": "Draft Tracker",
+    "date": "2021-02-01",
+    "date_label": "",
+    "url": null,
+    "description": "An app to track the NFL drat.",
+    "archived_reason": "The content was entered manually (no cheap APIs) and too much work for one weekend of use.",
+    "status": "archived"
+  },
+  {
+    "name": "Day1",
+    "date": "2025-01-01",
+    "date_label": "",
+    "url": null,
+    "description": "An trainer/client app with a mac client for the coach and an iOS app for the client.",
+    "archived_reason": "The coach paused his activity.",
+    "status": "archived"
+  },
+  {
+    "name": "Backyard Games",
+    "date": "2024-08-01",
+    "date_label": "",
+    "url": null,
+    "description": "An app to organize your own olympic games.",
+    "archived_reason": "",
+    "status": "active"
+  },
+  {
+    "name": "C-Wawa / Tee For Tree",
+    "date": "2019-11-01",
+    "date_label": "",
+    "url": null,
+    "description": "Clothing line to support an ecology, each sale was used to plant trees.",
+    "archived_reason": "",
+    "status": "archived"
+  },
+  {
+    "name": "System",
+    "date": "2025-01-01",
+    "date_label": "",
+    "url": null,
+    "description": "An app to allow people to make link between actions and feelings.",
+    "archived_reason": "It transformed into Peak Partner.",
     "status": "archived"
   }
 ]
