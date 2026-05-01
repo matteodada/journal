@@ -211,8 +211,9 @@ a:hover {
 
 .adventures-grid {
   display: grid;
-  grid-template-columns: repeat(3, 20%);
+  grid-template-columns: repeat(3, 1fr);
   gap: 60px 32px;
+  max-width: 900px;
 }
 
 .adventure-card img {

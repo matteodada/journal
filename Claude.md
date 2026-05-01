@@ -404,8 +404,9 @@ Images are grouped inside `<p>` tags in markdown. Layout is CSS-only via `:has()
 ```css
 .adventures-grid {
   display: grid;
-  grid-template-columns: repeat(3, 20%);
+  grid-template-columns: repeat(3, 1fr);
   gap: 60px 32px;
+  max-width: 900px;
 }
 
 .adventure-card img {
