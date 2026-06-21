@@ -385,3 +385,76 @@ a:hover {
   color: #111;
   margin-top: 0px;
 }
+
+/* ── Mobile ── */
+
+@media (max-width: 700px) {
+  /* Sidebar flows inline at the top of the page — no fixed bar, no burger */
+  .layout {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 24px 20px 0 20px;
+  }
+
+  .site-name {
+    margin-bottom: 16px;
+  }
+
+  /* Nav links sit in a horizontal wrapping row */
+  .sidebar nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* Content drops the fixed-sidebar offset and tightens padding */
+  .content {
+    margin-left: 0;
+    padding: 28px 20px 56px 20px;
+    max-width: none;
+  }
+
+  /* Full-bleed media on small screens */
+  .home-adventure-block {
+    width: 100%;
+  }
+
+  .adventures-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 16px;
+    max-width: none;
+  }
+
+  .creatives-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 16px;
+  }
+
+  /* Strip scrolls horizontally instead of overflowing */
+  .creatives-strip {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .creatives-strip img {
+    height: 96px;
+  }
+
+  /* Prose images can use more height on a tall, narrow viewport */
+  .prose p:has(img):not(:has(img + img)) img {
+    max-height: 40vh;
+  }
+}
+
+@media (max-width: 420px) {
+  .adventures-grid,
+  .creatives-grid {
+    grid-template-columns: 1fr;
+  }
+}
