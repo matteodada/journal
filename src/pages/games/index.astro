@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import games from '../../../data/games.json';
+
+const sorted = [...games].sort((a, b) => new Date(b.date) - new Date(a.date));
+---
+<Base title="games" activePage="games">
+  {sorted.map(item => (
+    <div class="game-item">
+      <div class="game-title-row">
+        <span class="game-sport">{item.sport}</span>
+        <span class="game-title">{item.opponent}</span>
+      </div>
+      <div class="game-meta">{item.league} · {item.score} · {item.result}</div>
+    </div>
+  ))}
+</Base>

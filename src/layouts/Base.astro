@@ -26,6 +26,7 @@ const { title, activePage = '', wide = false } = Astro.props;
         <a href="/projects" class:list={[{ active: activePage === 'projects' }]}>projects</a>
         <a href="/creatives" class:list={[{ active: activePage === 'creatives' }]}>creatives</a>
         <a href="/highlights" class:list={[{ active: activePage === 'highlights' }]}>highlights</a>
+        <a href="/games" class:list={[{ active: activePage === 'games' }]}>games</a>
       </nav>
     </aside>
     <main class:list={['content', { 'content--wide': wide }]}>

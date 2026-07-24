@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import projects from '../../data/projects.json';
 import photos from '../../data/photos.json';
 import highlights from '../../data/highlights.json';
+import games from '../../data/games.json';
 import locations from '../../data/locations.json';
 
 const thoughts = await getCollection('thoughts');
@@ -20,6 +21,8 @@ const sortedPhotos = [...photos].sort((a, b) => new Date(b.date) - new Date(a.da
 const lastCreatives = sortedPhotos.slice(0, 4);
 
 const lastHighlight = [...highlights].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+
+const lastGame = [...games].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
 
 const currentLocation = [...locations].sort((a, b) => new Date(b.start_date) - new Date(a.start_date))[0];
 
@@ -82,6 +85,19 @@ const currentLocation = [...locations].sort((a, b) => new Date(b.start_date) - n
           <span class="highlight-title">{lastHighlight.title}</span>
         </div>
         <div class="highlight-meta">{lastHighlight.date_label}, {lastHighlight.note}</div>
+      </div>
+    </>
+  )}
+
+  {lastGame && (
+    <>
+      <div class="section-label">last game</div>
+      <div class="game-item">
+        <div class="game-title-row">
+          <span class="game-sport">{lastGame.sport}</span>
+          <span class="game-title">{lastGame.opponent}</span>
+        </div>
+        <div class="game-meta">{lastGame.league} · {lastGame.score} · {lastGame.result}</div>
       </div>
     </>
   )}

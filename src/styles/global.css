@@ -386,6 +386,34 @@ a:hover {
   margin-top: 0px;
 }
 
+/* ── Games ── */
+
+.game-item {
+  margin-bottom: 1rem;
+}
+
+.game-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.game-sport {
+  font-size: 12px;
+  color: #999;
+}
+
+.game-title {
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.game-meta {
+  font-size: 12px;
+  color: #111;
+  margin-top: 0px;
+}
+
 /* ── Mobile ── */
 
 @media (max-width: 700px) {
