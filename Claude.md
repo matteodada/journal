@@ -11,8 +11,16 @@
 ```
 journal/
 ├── public/
+│   ├── CNAME
+│   ├── og.jpg
+│   ├── favicon.png
 │   └── fonts/
 │       └── ThatThatNewPixelFamily-Square.woff2
+├── guides/
+│   ├── add-a-thought.md
+│   ├── add-an-adventure.md
+│   ├── add-a-photo.md
+│   └── update-data.md
 ├── src/
 │   ├── content/
 │   │   └── config.js               # Astro 5 content layer schemas
@@ -59,7 +67,7 @@ journal/
 
 **Date pattern across all data:** Every entry uses two date fields:
 - `date` — ISO date string (e.g. `"2025-09-01"`), used for sorting
-- `date_label` — human-readable display string (e.g. `"September 2025"`), used in templates
+- `date_label` — display string in `DD-MM-YY` format (e.g. `"01-09-25"`), used in templates; must match `date`
 
 ---
 
@@ -149,7 +157,7 @@ Section labels use `.section-label` (12px, #999, muted). "where i'm at" uses `.s
 - Rows have `margin-bottom: 8px` (inline style)
 
 **Detail `/thoughts/[slug]`:**
-- Header: `<h1 class="entry-header">` — `title` + `<span class="secondary">date_label</span>`
+- Header: `<h1 class="entry-header">` — `<span class="secondary">date_label</span>` + `title`
 - Visually flat header: 14px, font-weight normal
 - Body: `.prose` wrapping `<Content />`
 - No images in thoughts
@@ -174,7 +182,7 @@ const thoughts = defineCollection({
 ---
 title: "Why small towns will not be hit by AI"
 date: "2026-03-08"
-date_label: "8 March 2026"
+date_label: "08-03-26"
 ---
 ```
 
@@ -187,7 +195,7 @@ date_label: "8 March 2026"
 - Sorted by date descending
 
 **Detail `/adventures/[slug]`:**
-- Header: `<h1 class="entry-header">` — title + secondary date_label
+- Header: `<h1 class="entry-header">` — `<span class="secondary">date_label</span>` + title
 - Freeform body: `.prose` wrapping `<Content />`
 - Images inside markdown `<p>` tags get CSS-driven layouts via `:has()` (see Prose Images below)
 
@@ -209,8 +217,8 @@ const adventures = defineCollection({
 ---
 title: "Japan"
 date: "2025-09-01"
-date_label: "September 2025"
-cover: "https://res.cloudinary.com/[account]/image/upload/w_800,f_auto/cover.jpg"
+date_label: "01-09-25"
+cover: "https://res.cloudinary.com/[account]/image/upload/w_800,f_auto,q_auto/cover.jpg"
 ---
 ```
 
@@ -220,7 +228,7 @@ cover: "https://res.cloudinary.com/[account]/image/upload/w_800,f_auto/cover.jpg
 No detail pages.
 
 Two sections:
-- **active** — `name` is an external link, `date_label` right-aligned, one-line description below
+- **active** — `name` is a link if `url` is set, plain text if null; `date_label` right-aligned, one-line description below
 - **archived** — name is plain text (never linked), `date_label` right-aligned, description + optional `archived_reason` below
 
 **projects.json structure:**
@@ -272,10 +280,10 @@ Two sections:
 [
   {
     "slug": "japan-temple",
-    "image": "https://res.cloudinary.com/[account]/image/upload/w_800,f_auto/japan-temple.jpg",
+    "image": "https://res.cloudinary.com/[account]/image/upload/w_1200,f_auto,q_auto/japan-temple.jpg",
     "location": "Kyoto, Japan, September 2025",
     "date": "2025-09-01",
-    "date_label": "September 2025",
+    "date_label": "01-09-25",
     "camera": "Leica Q2"
   }
 ]
@@ -299,14 +307,14 @@ Type is any free string (`music`, `movie`, `series`, `youtube channel`, `quote`,
     "type": "music",
     "title": "Mace Island",
     "date": "2024-12-28",
-    "date_label": "28 décembre 2024",
+    "date_label": "28-12-24",
     "note": "il va percer"
   },
   {
     "type": "quote",
     "title": "\"Improvise, Adapt, Overcome\" - Bear Grylls",
     "date": "2000-08-03",
-    "date_label": "2000",
+    "date_label": "03-08-00",
     "note": "born to risk it all"
   }
 ]
@@ -435,7 +443,7 @@ export default defineConfig({
 
 ## Notes
 
-- No responsive / mobile CSS. Desktop-only for now.
+- Two responsive breakpoints: `max-width: 700px` (sidebar flows to top, nav goes horizontal, grids drop to 2-column, adventure cover goes full-width) and `max-width: 420px` (grids collapse to 1-column). Layout changes must work on desktop and both breakpoints.
 - No dark mode, no CSS variables.
 - No components beyond `Base.astro`. All markup is inlined into page files.
 - The only inline style in the codebase is `margin-bottom: 8px` on thought list rows.

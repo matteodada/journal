@@ -1,17 +1,17 @@
-# How to update site data (curation, projects, location)
+# How to update site data (highlights, projects, location)
 
 ---
 
-## Add a curation entry
+## Add a highlight entry
 
-Open `data/curation.json` and add a new object at the **top** of the array (most recent first):
+Open `data/highlights.json` and add a new object at the **top** of the array (most recent first):
 
 ```json
 {
   "type": "music",
   "title": "Mumbo Sugar from Arc De Soleil",
   "date": "2025-05-01",
-  "date_label": "May 2025",
+  "date_label": "01-05-25",
   "note": "Hard to put into words but it just hits different."
 }
 ```
@@ -20,10 +20,10 @@ Open `data/curation.json` and add a new object at the **top** of the array (most
 - `type` — free-form label shown in muted text: `music`, `movie`, `series`, `book`, `quote`, `artist`, `youtube channel`, etc.
 - `title` — the name of the thing
 - `date` — ISO date `YYYY-MM-DD`, used for sorting (1st of the month is fine)
-- `date_label` — human-readable date shown on the page
+- `date_label` — date in `DD-MM-YY` format (e.g. `01-05-25`), shown on the page
 - `note` — one or two sentences about why it's worth noting; for quotes, use this for the attribution
 
-The entry appears automatically on `/curation`, sorted by date descending.
+The entry appears automatically on `/highlights`, sorted by date descending.
 
 ---
 
@@ -47,8 +47,8 @@ Add a new object anywhere in the array (display order follows date, not array or
 ```
 
 **Fields:**
-- `name` — project name, shown as an external link
-- `url` — the public URL; required for active projects
+- `name` — project name; shown as an external link if `url` is set, plain text if null
+- `url` — the public URL, or `null` if the project has no public link
 - `description` — one sentence
 - `date` / `date_label` — launch or start date
 - `status` — `"active"`
