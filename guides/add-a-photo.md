@@ -7,22 +7,21 @@ Export or locate the photo on your Mac as a **JPEG**. Full resolution is fine �
 ## 2. Upload to Cloudinary
 
 1. Go to [cloudinary.com](https://cloudinary.com) → Media Library
-2. Navigate to the **creatives** folder
-3. Click **Upload** and select your JPEG
-4. Before confirming, set the **Public ID** to match your intended filename (e.g. `kyoto-temple`) — Cloudinary does not update it automatically from the filename
-5. Once uploaded, the public ID is the last segment of the URL path
+2. Click **Upload** and select your JPEG
+3. Before confirming, set the **Public ID** to match your intended filename (e.g. `kyoto-temple`) — Cloudinary does not update it automatically from the filename
+4. Once uploaded, the public ID is the last segment of the URL path
 
 ## 3. Build the Cloudinary URL
 
 Use this pattern:
 
 ```
-https://res.cloudinary.com/dpyebib7h/image/upload/w_1200,f_auto,q_auto/creatives/kyoto-temple.jpg
+https://res.cloudinary.com/dpyebib7h/image/upload/w_1200,f_auto,q_auto/kyoto-temple.jpg
 ```
 
 - `dpyebib7h` — your Cloudinary cloud name
 - `w_1200,f_auto,q_auto` — resize to 1200px wide, auto format (WebP/AVIF), auto quality
-- `creatives/kyoto-temple.jpg` — folder + filename
+- `kyoto-temple.jpg` — filename (no folder prefix needed)
 
 ## 4. Add the entry to photos.json
 
@@ -31,10 +30,10 @@ Open `data/photos.json` and add a new object at the top of the array (most recen
 ```json
 {
   "slug": "kyoto-temple",
-  "image": "https://res.cloudinary.com/dpyebib7h/image/upload/w_1200,f_auto,q_auto/creatives/kyoto-temple.jpg",
+  "image": "https://res.cloudinary.com/dpyebib7h/image/upload/w_1200,f_auto,q_auto/kyoto-temple.jpg",
   "location": "Kyoto, Japan, September 2025",
   "date": "2025-09-01",
-  "date_label": "September 2025",
+  "date_label": "01-09-25",
   "camera": "Leica Q2"
 }
 ```
@@ -52,7 +51,7 @@ Open `data/photos.json` and add a new object at the top of the array (most recen
 The photo appears automatically on:
 - `/creatives` — the grid
 - `/creatives/kyoto-temple` — the detail page
-- `/` — the home strip if it's in the 5 most recent
+- `/` — the home strip if it's in the 4 most recent
 
 ---
 
@@ -79,7 +78,7 @@ Set in the frontmatter of the adventure markdown file (`content/adventures/japan
 ---
 title: "Japan"
 date: "2025-09-01"
-date_label: "September 2025"
+date_label: "01-09-25"
 cover: "https://res.cloudinary.com/dpyebib7h/image/upload/w_800,f_auto,q_auto/adventures/japan/cover.jpg"
 ---
 ```

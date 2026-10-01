@@ -14,7 +14,7 @@ Every thought requires exactly three frontmatter fields:
 ---
 title: "Why maps lie"
 date: "2026-05-01"
-date_label: "1 May 2026"
+date_label: "01-05-26"
 ---
 ```
 
@@ -31,7 +31,7 @@ Add your text below the frontmatter. Plain markdown — paragraphs, headings, li
 ---
 title: "Why maps lie"
 date: "2026-05-01"
-date_label: "1 May 2026"
+date_label: "01-05-26"
 ---
 
 Your text starts here. Each paragraph is separated by a blank line.

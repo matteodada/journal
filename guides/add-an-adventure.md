@@ -33,7 +33,7 @@ Example: `content/adventures/japan.md`
 ---
 title: "Japan"
 date: "2025-09-01"
-date_label: "September 2025"
+date_label: "01-09-25"
 cover: "https://res.cloudinary.com/dpyebib7h/image/upload/w_800,f_auto,q_auto/adventures/japan/cover.jpg"
 ---
 ```
